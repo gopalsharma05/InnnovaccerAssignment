@@ -1,0 +1,34 @@
+<% include ../partial/header %>
+<div class="ui mamin container segment">
+    <h1 class="ui center header">
+        <%= book.title %>
+    </h1>
+    <img src="<%= book.image %>">
+    <div>
+        <span>
+            <%= book.author %></span>
+    </div>
+    <div>
+        <%= book.body %>
+        <div>
+            <p> <a href="/books/<%= book._id %>/comments/new">Add new comments</a></p>
+        </div>
+        <% book.comments.forEach(function(comment){
+            %>
+            <p>
+                   <%= comment.writtenby %> -- <%= comment.com %> 
+            </p>
+        <% }) %>
+    </div>
+    <div>
+        <a href="/books/<%= book._id %>/edit">edit post</a>
+    </div>
+    
+    <div>
+            <form class="ui form" action="/books/<%= book._id%>/?_method=DELETE" method="POST">
+                <button class="ui button" type="submit">Delete</button>
+        </div>
+
+</div>
+
+<% include ../partial/footer %>
